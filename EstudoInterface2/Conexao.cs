@@ -31,7 +31,7 @@ namespace EstudoInterface2
                 {
                     case 0:
                         MessageBox.Show("Sem conexão ",ex.ToString());
-                        //MessageBox.Show("Sem conexão com o Banco ", ex.ToString());
+                            //MessageBox.Show("Sem conexão com o Banco ", ex.ToString());
                         break;
                     case 1046:
                         MessageBox.Show("Usuario ou senha do BD inválidos", ex.ToString());
@@ -72,18 +72,18 @@ namespace EstudoInterface2
                     retorno = autLogin["acesso"].ToString();
                     retornoLogin = autLogin["login"].ToString();
                 }
+                else
+                {
+                    MessageBox.Show("Usuário não encontrado!");
+                }
                 connection.Close();
-            }
-            if (retorno != string.Empty)
-            {
-                return retorno + retornoLogin;
             }
             else
             {
-                MessageBox.Show("Usuário não encontrado!");
-                return retorno;
+                MessageBox.Show("Conexão com bando de dados falhou!");
             }
-            
+            return retorno + retornoLogin;
+
         }
 
         public string queryUser(string login)
