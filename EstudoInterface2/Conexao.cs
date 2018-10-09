@@ -16,7 +16,7 @@ namespace EstudoInterface2
         public Boolean returnBloqueio { get; set; }
 
 
-        MySqlConnection connection = new MySqlConnection("SERVER=localhost;DATABASE=comercio;UID=root;PASSWORD=root;SSLMode=none");
+        MySqlConnection connection = new MySqlConnection("SERVER=localhost;DATABASE=helpdesk_mip;UID=root;PASSWORD=root;SSLMode=none");
 
         private bool OpenConnection()
         {
@@ -31,7 +31,6 @@ namespace EstudoInterface2
                 {
                     case 0:
                         MessageBox.Show("Sem conexão ",ex.ToString());
-                            //MessageBox.Show("Sem conexão com o Banco ", ex.ToString());
                         break;
                     case 1046:
                         MessageBox.Show("Usuario ou senha do BD inválidos", ex.ToString());
@@ -62,7 +61,7 @@ namespace EstudoInterface2
 
             if (this.OpenConnection() == true)
             {
-                string query = "select acesso, login, senha from funcionario where login = '"+login+"' && senha = '"+senha+"';";
+                string query = "select acesso, login, senha from tbl_usuario where login = '"+login+"' && senha = '"+senha+"';";
                 MySqlCommand queryLogin = new MySqlCommand(query, connection);
 
                 MySqlDataReader autLogin = queryLogin.ExecuteReader();
@@ -90,12 +89,12 @@ namespace EstudoInterface2
         {
             if (this.OpenConnection() == true)
             {
-                string query = "select idfuncionario,nome,sobrenome,acesso,bloqueio from funcionario where login='"+login+"'";
+                string queryUsuario = "select id_usuario,nome,sobrenome,acesso,bloqueio from tbl_usuario where login='"+login+"'";
 
-                MySqlCommand cmd = new MySqlCommand(query, connection);
+                MySqlCommand cmd = new MySqlCommand(queryUsuario, connection);
                 MySqlDataReader dadosUser = cmd.ExecuteReader();
                 dadosUser.Read();
-                returnId = dadosUser.GetString("idfuncionario");
+                returnId = dadosUser.GetString("id_usuario");
                 returnNome = dadosUser.GetString("nome");
                 returnSobrenome = dadosUser.GetString("sobrenome");
                 returnAcesso = dadosUser.GetString("acesso");
@@ -103,6 +102,24 @@ namespace EstudoInterface2
 
             }
             return returnId + returnNome + returnSobrenome + returnAcesso + returnBloqueio;
+        }
+
+        public string queryChamados() {
+            if (this.OpenConnection() == true) {
+                //string queryChamados = "";
+            }
+
+            return null;
+        }
+
+        public string insertChamados()
+        {
+            if (this.OpenConnection() == true)
+            {
+                //string queryChamados = "";
+            }
+
+            return null;
         }
     }
 }

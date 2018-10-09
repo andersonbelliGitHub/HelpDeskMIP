@@ -1,6 +1,6 @@
 ﻿namespace EstudoInterface2
 {
-    partial class Form2
+    partial class Menu_Form
     {
         /// <summary>
         /// Required designer variable.
@@ -28,23 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu_Form));
             this.label1 = new System.Windows.Forms.Label();
             this.lbNome = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.lista_de_chamados = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.abrir_chamado = new System.Windows.Forms.Button();
+            this.sair = new System.Windows.Forms.LinkLabel();
+            this.alterar_perfil = new System.Windows.Forms.LinkLabel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.Perfil = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button12 = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -63,9 +66,6 @@
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.textBox8 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -105,7 +105,7 @@
             this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Controls.Add(this.button4);
             this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.lista_de_chamados);
             this.groupBox1.Location = new System.Drawing.Point(7, 4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(500, 108);
@@ -143,15 +143,16 @@
             this.button2.Text = "Controle técnicos";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // lista_de_chamados
             // 
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(39, 22);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(187, 35);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Lista de chamados";
-            this.button1.UseVisualStyleBackColor = true;
+            this.lista_de_chamados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lista_de_chamados.Location = new System.Drawing.Point(39, 22);
+            this.lista_de_chamados.Name = "lista_de_chamados";
+            this.lista_de_chamados.Size = new System.Drawing.Size(187, 35);
+            this.lista_de_chamados.TabIndex = 0;
+            this.lista_de_chamados.Text = "Lista de chamados";
+            this.lista_de_chamados.UseVisualStyleBackColor = true;
+            this.lista_de_chamados.Click += new System.EventHandler(this.lista_de_chamados_Click);
             // 
             // groupBox2
             // 
@@ -159,13 +160,33 @@
             this.groupBox2.Controls.Add(this.button5);
             this.groupBox2.Controls.Add(this.button7);
             this.groupBox2.Controls.Add(this.button6);
-            this.groupBox2.Controls.Add(this.button8);
+            this.groupBox2.Controls.Add(this.abrir_chamado);
             this.groupBox2.Location = new System.Drawing.Point(7, 120);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(500, 108);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Abertura";
+            // 
+            // button5
+            // 
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button5.Location = new System.Drawing.Point(269, 61);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(187, 35);
+            this.button5.TabIndex = 7;
+            this.button5.Text = ".";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button7.Location = new System.Drawing.Point(39, 61);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(187, 35);
+            this.button7.TabIndex = 5;
+            this.button7.Text = ".";
+            this.button7.UseVisualStyleBackColor = true;
             // 
             // button6
             // 
@@ -177,44 +198,45 @@
             this.button6.Text = "Aprovação";
             this.button6.UseVisualStyleBackColor = true;
             // 
-            // button8
+            // abrir_chamado
             // 
-            this.button8.AutoSize = true;
-            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button8.Location = new System.Drawing.Point(39, 23);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(187, 35);
-            this.button8.TabIndex = 4;
-            this.button8.Text = "Abrir chamado";
-            this.button8.UseVisualStyleBackColor = true;
+            this.abrir_chamado.AutoSize = true;
+            this.abrir_chamado.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.abrir_chamado.Location = new System.Drawing.Point(39, 23);
+            this.abrir_chamado.Name = "abrir_chamado";
+            this.abrir_chamado.Size = new System.Drawing.Size(187, 35);
+            this.abrir_chamado.TabIndex = 4;
+            this.abrir_chamado.Text = "Abrir chamado";
+            this.abrir_chamado.UseVisualStyleBackColor = true;
+            this.abrir_chamado.Click += new System.EventHandler(this.abrir_chamado_Click);
             // 
-            // linkLabel1
+            // sair
             // 
-            this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.linkLabel1.Location = new System.Drawing.Point(515, 25);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(34, 18);
-            this.linkLabel1.TabIndex = 5;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Sair";
-            this.linkLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            this.sair.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.sair.AutoSize = true;
+            this.sair.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.sair.Location = new System.Drawing.Point(515, 25);
+            this.sair.Name = "sair";
+            this.sair.Size = new System.Drawing.Size(34, 18);
+            this.sair.TabIndex = 5;
+            this.sair.TabStop = true;
+            this.sair.Text = "Sair";
+            this.sair.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.sair.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.sair_LinkClicked);
             // 
-            // linkLabel2
+            // alterar_perfil
             // 
-            this.linkLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.linkLabel2.Location = new System.Drawing.Point(423, 26);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(86, 17);
-            this.linkLabel2.TabIndex = 6;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "Alterar Perfil";
-            this.linkLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+            this.alterar_perfil.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.alterar_perfil.AutoSize = true;
+            this.alterar_perfil.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.alterar_perfil.Location = new System.Drawing.Point(423, 26);
+            this.alterar_perfil.Name = "alterar_perfil";
+            this.alterar_perfil.Size = new System.Drawing.Size(86, 17);
+            this.alterar_perfil.TabIndex = 6;
+            this.alterar_perfil.TabStop = true;
+            this.alterar_perfil.Text = "Alterar Perfil";
+            this.alterar_perfil.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.alterar_perfil.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.alterar_perfil_LinkClicked);
             // 
             // tableLayoutPanel1
             // 
@@ -281,6 +303,15 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Dados";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(152, 146);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(270, 21);
+            this.comboBox1.TabIndex = 18;
+            this.comboBox1.Text = "Selecione um cargo";
             // 
             // button12
             // 
@@ -456,36 +487,7 @@
             this.textBox8.Size = new System.Drawing.Size(270, 24);
             this.textBox8.TabIndex = 10;
             // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(152, 146);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(270, 21);
-            this.comboBox1.TabIndex = 18;
-            this.comboBox1.Text = "Selecione um cargo";
-            // 
-            // button7
-            // 
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button7.Location = new System.Drawing.Point(39, 61);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(187, 35);
-            this.button7.TabIndex = 5;
-            this.button7.Text = ".";
-            this.button7.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button5.Location = new System.Drawing.Point(269, 61);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(187, 35);
-            this.button5.TabIndex = 7;
-            this.button5.Text = ".";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // Form2
+            // Menu_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -493,15 +495,15 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(601, 329);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Controls.Add(this.linkLabel2);
-            this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.alterar_perfil);
+            this.Controls.Add(this.sair);
             this.Controls.Add(this.lbNome);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tableLayoutPanel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "Form2";
+            this.Name = "Menu_Form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inicio - HelpDesk MIP";
             this.groupBox1.ResumeLayout(false);
@@ -527,12 +529,12 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button lista_de_chamados;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.LinkLabel linkLabel2;
+        private System.Windows.Forms.Button abrir_chamado;
+        private System.Windows.Forms.LinkLabel sair;
+        private System.Windows.Forms.LinkLabel alterar_perfil;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TabControl Perfil;

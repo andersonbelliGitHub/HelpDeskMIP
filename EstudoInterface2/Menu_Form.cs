@@ -1,0 +1,57 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace EstudoInterface2
+{
+    public partial class Menu_Form : Form
+    {
+        Conexao conexao = new Conexao();
+
+        public Menu_Form(string DadosUsuario)
+        {
+            InitializeComponent();
+
+            string returnDados = conexao.queryUser(DadosUsuario);
+            string id = conexao.returnId.ToString();
+            string nome = conexao.returnNome.ToString();
+            string sobrenome = conexao.returnSobrenome.ToString();
+            string acesso = conexao.returnAcesso.ToString();
+            Boolean bloqueio = conexao.returnBloqueio;
+
+            lbNome.Text = nome + " " + sobrenome;
+        }
+
+        private void sair_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Close();
+            Login_Form loginForm = new Login_Form();
+            loginForm.Show();
+        }
+
+        private void alterar_perfil_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+                tableLayoutPanel2.Visible = true;
+                tableLayoutPanel1.Visible = false;
+        }
+
+        private void lista_de_chamados_Click(object sender, EventArgs e)
+        {
+            ListaDeChamados_Form lstChamadosForm = new ListaDeChamados_Form();
+            lstChamadosForm.Show();
+        }
+
+        private void abrir_chamado_Click(object sender, EventArgs e)
+        {
+            string returnDados = conexao.queryUser(DadosUsuario);
+            AbrirChamado_Form abrirChamadoForm = new AbrirChamado_Form();
+            //abrirChamadoForm(login);
+        }
+    }
+}

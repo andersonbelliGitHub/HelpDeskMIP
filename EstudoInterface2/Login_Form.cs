@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace EstudoInterface2
 {
-    public partial class Form1 : Form
+    public partial class Login_Form : Form
     {
         String usuario;
         String senha;
@@ -18,7 +18,7 @@ namespace EstudoInterface2
 
         Conexao conexao = new Conexao();
 
-        public Form1()
+        public Login_Form()
         {
             InitializeComponent();
         }
@@ -43,7 +43,7 @@ namespace EstudoInterface2
                     int returnTamanho = returnConnection.Length;
                     returnTamanho--;
                     string returnLogin = returnConnection.Substring(1, returnTamanho);
-                    Form2 form2 = new Form2(returnLogin);
+                    Menu_Form form2 = new Menu_Form(returnLogin);
                     this.Hide();
                     form2.Show();
                 }
