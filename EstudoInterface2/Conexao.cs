@@ -9,12 +9,24 @@ namespace EstudoInterface2
 {
     class Conexao
     {
+        /*
+         * LÍDER TÉCNICO no banco de dados terá "acesso=1"
+         * TÉCNICO "acesso=2"
+         * 
+         * USUARIO "acesso=4" 
+        */
         public string returnNome { get; set; }
         public string returnId { get; set; }
+        public int returnIdProblema { get; set; }
         public string returnSobrenome { get; set; }
         public string returnAcesso { get; set; }
         public Boolean returnBloqueio { get; set; }
-
+        public string returnSexo { get; set; }
+        public string returnDataNasc { get; set; }
+        public string returnNumDocumento { get; set; }
+        public string returnEndereco { get; set; }
+        public string returnTelefone { get; set; }
+        public string returnProblema { get; set; }
 
         MySqlConnection connection = new MySqlConnection("SERVER=localhost;DATABASE=helpdesk_mip;UID=root;PASSWORD=root;SSLMode=none");
 
@@ -89,7 +101,8 @@ namespace EstudoInterface2
         {
             if (this.OpenConnection() == true)
             {
-                string queryUsuario = "select id_usuario,nome,sobrenome,acesso,bloqueio from tbl_usuario where login='"+login+"'";
+                string queryUsuario = "select id_usuario,nome,sobrenome,acesso,bloqueio,sexo,data_nasc," +
+                    "num_documento,endereco,telefone from tbl_usuario where login='" + login + "'";
 
                 MySqlCommand cmd = new MySqlCommand(queryUsuario, connection);
                 MySqlDataReader dadosUser = cmd.ExecuteReader();
@@ -99,6 +112,11 @@ namespace EstudoInterface2
                 returnSobrenome = dadosUser.GetString("sobrenome");
                 returnAcesso = dadosUser.GetString("acesso");
                 returnBloqueio = dadosUser.GetBoolean("bloqueio");
+                returnSexo = dadosUser.GetString("sexo");
+                returnDataNasc = dadosUser.GetString("data_nasc");
+                returnNumDocumento = dadosUser.GetString("num_documento");
+                returnEndereco = dadosUser.GetString("endereco");
+                returnTelefone = dadosUser.GetString("telefone");
 
             }
             return returnId + returnNome + returnSobrenome + returnAcesso + returnBloqueio;
@@ -112,14 +130,19 @@ namespace EstudoInterface2
             return null;
         }
 
-        public string insertChamados()
+        public void insertChamados(int id_tecnico,int id_usuario,int id_problema, string descricao, string contato)
         {
             if (this.OpenConnection() == true)
             {
-                //string queryChamados = "";
-            }
+                MySqlCommand cmd = connection.CreateCommand();
 
-            return null;
+                cmd.CommandText = "INSERT INTO `helpdesk_mip`.`tbl_listachamados`" +
+                    "(`id_usuario_afetado`, `id_tecnico`, `id_problema`, `descricao_chamado`, `data_abertura`, `status`,`contato`)" +
+                    "VALUES('" + id_usuario + "', '" + id_tecnico + "', '" + id_problema + "', '" + descricao + "', now(), 'aberto','" + contato + "');";
+
+                cmd.ExecuteNonQuery();
+                CloseConnection();
+            }
         }
     }
 }

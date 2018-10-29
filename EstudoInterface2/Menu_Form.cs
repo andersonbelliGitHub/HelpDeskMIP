@@ -13,12 +13,16 @@ namespace EstudoInterface2
     public partial class Menu_Form : Form
     {
         Conexao conexao = new Conexao();
+        public string conexaoUsuario { get; set; }
 
         public Menu_Form(string DadosUsuario)
         {
             InitializeComponent();
 
+            conexaoUsuario = DadosUsuario;
+
             string returnDados = conexao.queryUser(DadosUsuario);
+
             string id = conexao.returnId.ToString();
             string nome = conexao.returnNome.ToString();
             string sobrenome = conexao.returnSobrenome.ToString();
@@ -49,9 +53,8 @@ namespace EstudoInterface2
 
         private void abrir_chamado_Click(object sender, EventArgs e)
         {
-            string returnDados = conexao.queryUser(DadosUsuario);
-            AbrirChamado_Form abrirChamadoForm = new AbrirChamado_Form();
-            //abrirChamadoForm(login);
+            AbrirChamado_Form abrirChamadoForm = new AbrirChamado_Form(conexao.returnId.ToString());
+            abrirChamadoForm.Show();
         }
     }
 }
