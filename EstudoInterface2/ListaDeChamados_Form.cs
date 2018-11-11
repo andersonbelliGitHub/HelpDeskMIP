@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace EstudoInterface2
+namespace MIPHelpDesk
 {
     public partial class ListaDeChamados_Form : Form
     {
@@ -20,39 +20,38 @@ namespace EstudoInterface2
 
         private void ListaDeChamados_Form_Load(object sender, EventArgs e)
         {
-            DataTable chamados = conexao.queryChamados();
-            dgChamados.DataSource = chamados;
-
-
-            //private void Button6_Click(object sender, System.EventArgs e)
-            //{
-
-                int rowNumber = 1;
-                foreach (DataGridViewRow row in dgChamados.Rows)
-                {
-                    if (row.IsNewRow) continue;
-                    row.HeaderCell.Value = rowNumber;
-                    //row.HeaderCell.Value = "Row " + rowNumber;
-                    rowNumber = rowNumber + 1;
-                }
-                dgChamados.AutoResizeRowHeadersWidth(
-                    DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders);
-            //}
+            PreencheChamados();
         }
 
         private void btn_atualiza_Click(object sender, EventArgs e)
         {
-            DataTable chamados = conexao.queryChamados();
-            dgChamados.DataSource = chamados;
+            PreencheChamados();
         }
 
         private void dgChamados_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            int idChamado = Convert.ToInt32(dgChamados["id", e.RowIndex].Value);
+            int idChamado = Convert.ToInt32(dgChamados["Id chamado", e.RowIndex].Value);
 
             string atual = dgChamados.CurrentCell.ToString();
-            Chamado_Form chamadoFrm = new Chamado_Form(atual);
+            Chamado_Form chamadoFrm = new Chamado_Form(idChamado);
             chamadoFrm.Show();
+        }
+
+        private void PreencheChamados()
+        {
+            DataTable chamados = conexao.queryChamados();
+            dgChamados.DataSource = chamados;
+
+            int rowNumber = 1;
+            foreach (DataGridViewRow row in dgChamados.Rows)
+            {
+                if (row.IsNewRow) continue;
+                //row.HeaderCell.Value = rowNumber;
+                row.HeaderCell.Value = " " + rowNumber;
+                rowNumber = rowNumber + 1;
+            }
+            dgChamados.AutoResizeRowHeadersWidth(
+                DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace EstudoInterface2
+﻿namespace MIPHelpDesk
 {
     partial class AbrirChamado_Form
     {

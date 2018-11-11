@@ -6,7 +6,7 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Data;
 
-namespace EstudoInterface2
+namespace MIPHelpDesk
 {
     class Conexao
     {
@@ -28,8 +28,15 @@ namespace EstudoInterface2
         public string returnEndereco { get; set; }
         public string returnTelefone { get; set; }
         public string returnProblema { get; set; }
+        public string returnContato { get; set; }
+        public string returnDescricao { get; set; }
+        public string returnDTAbertura { get; set; }
+        public string returnTempoSLA { get; set; }
+        public string returnIdTecnico { get; set; }
+        public string returnIdUsuario { get; set; }
+        public string returnSolucao { get; set; }
 
-        MySqlConnection connection = new MySqlConnection("SERVER=localhost;DATABASE=helpdesk_mip;UID=root;PASSWORD=root;SSLMode=none");
+    MySqlConnection connection = new MySqlConnection("SERVER=localhost;DATABASE=helpdesk_mip;UID=root;PASSWORD=root;SSLMode=none");
 
         private bool OpenConnection()
         {
@@ -102,6 +109,7 @@ namespace EstudoInterface2
         {
             if (this.OpenConnection() == true)
             {
+                limpaValores();
                 string queryUsuario = "select id_usuario,nome,sobrenome,acesso,bloqueio,sexo,data_nasc," +
                     "num_documento,endereco,telefone from tbl_usuario where login='" + login + "'";
 
@@ -123,23 +131,52 @@ namespace EstudoInterface2
             return returnId + returnNome + returnSobrenome + returnAcesso + returnBloqueio;
         }
 
-        public DataTable queryChamados() {
+        public string queryChamado(int idChamado)
+        {
+            if (this.OpenConnection() == true)
+            {
+                limpaValores();
+                string queryChamado = "SELECT `Id chamado`,`Nome`,`Contato`,`Descrição`,`Data de abertura`,`Tempo SLA`" + 
+                    "FROM view_chamados where `Id chamado` = " + idChamado + ";";
+
+                MySqlCommand cmd = new MySqlCommand(queryChamado, connection);
+                MySqlDataReader dadosChamado = cmd.ExecuteReader();
+                dadosChamado.Read();
+                returnId = dadosChamado.GetString("Id chamado");
+                returnTecnico = dadosChamado.GetString("Id tecnico");
+                returnUsuario = dadosChamado.GetString("Id usuario");
+                returnNome = dadosChamado.GetString("Nome");
+                returnContato = dadosChamado.GetString("Contato");
+                returnDescricao = dadosChamado.GetString("Descrição");
+                returnDTAbertura = dadosChamado.GetString("Data de abertura");
+                returnTempoSLA = dadosChamado.GetString("Tempo SLA");
+                returnSolucao = dadosChamado.GetString("Solucao");
+
+                CloseConnection();
+            }
+            return returnId + returnNome + returnContato + returnDescricao + returnDTAbertura + returnDTAbertura + returnTempoSLA;
+        }
+
+        public DataTable queryChamados()
+        {
             DataTable dtChamados = null;
-            if (this.OpenConnection() == true) {
-                string queryChamados = "SELECT id,nome,contato,descrição,'data de abertura',tempo FROM view_chamados;";
+            if (this.OpenConnection() == true)
+            {
+                string queryChamados = "SELECT `Id chamado`,`Nome`,`Contato`,`Descrição`,`Data de abertura`,`Tempo SLA` FROM view_chamados where `status` = 'aberto';";
                 MySqlCommand cmd = new MySqlCommand(queryChamados, connection);
 
-                try {
+                try
+                {
                     MySqlDataAdapter objAdp = new MySqlDataAdapter(cmd);
                     dtChamados = new DataTable();
 
                     objAdp.Fill(dtChamados);
-
-                    //return dtChamados;
+                    CloseConnection();
                 }
-                catch
+                catch (MySqlException ex)
                 {
-                    MessageBox.Show("Ops! Algo deu errado");
+                    MessageBox.Show("Ops! Algo deu errado \n\n" + ex, " Erro conhecido!");
+                    CloseConnection();
                 }
             }
             return dtChamados;
@@ -158,6 +195,75 @@ namespace EstudoInterface2
                 cmd.ExecuteNonQuery();
                 CloseConnection();
             }
+        }
+
+        public void updateChamado(int id,string contato, string descricao)
+        {
+            if (this.OpenConnection() == true)
+            {
+                limpaValores();
+                try
+                {
+                    MySqlCommand cmd = connection.CreateCommand();
+
+                    cmd.CommandText = "UPDATE `helpdesk_mip`.`tbl_listachamados`" +
+                     "SET `descricao_chamado`= '" + descricao +
+                     "', `contato`='" + contato + "' WHERE `id_chamados`='" + id + "';";
+
+                    cmd.ExecuteNonQuery();
+                    CloseConnection();
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Ops! Algo deu errado \n\n" + ex, " Erro conhecido!");
+                    CloseConnection();
+                }
+            }
+        }
+
+        public void updateFecharChamado(int id_chamado,int id_tecnico, string solucao)
+        {
+            if (this.OpenConnection() == true)
+            {
+                limpaValores();
+                try
+                {
+                    MySqlCommand cmd = connection.CreateCommand();
+
+                    cmd.CommandText = "UPDATE `helpdesk_mip`.`tbl_listachamados` SET"+
+                        "`id_tecnico_fechou`='"+id_tecnico+"', `data_fechamento`='now()', `status`='fechado', `solucao`='"+solucao+"'"+
+                        "WHERE `id_chamados`='"+id_chamado+"';";
+
+                    cmd.ExecuteNonQuery();
+                    CloseConnection();
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Ops! Algo deu errado \n\n" + ex, " Erro conhecido!");
+                    CloseConnection();
+                }
+            }
+        }
+
+        public void limpaValores()
+        {
+            returnNome = "";
+            returnId = "";
+            returnIdProblema = 0;
+            returnSobrenome = "";
+            returnAcesso = "";
+            returnBloqueio = false;
+            returnDataNasc = "";
+            returnNumDocumento = "";
+            returnEndereco = "";
+            returnTelefone = "";
+            returnProblema = "";
+            returnDescricao = "";
+            returnDTAbertura = "";
+            returnTempoSLA = "";
+            returnTecnico = "";
+            returnUsuario = "";
+            returnSolucao = "";
         }
     }
 }

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace EstudoInterface2
+namespace MIPHelpDesk
 {
     public partial class AbrirChamado_Form : Form
     {

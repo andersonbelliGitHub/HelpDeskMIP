@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace EstudoInterface2
+namespace MIPHelpDesk
 {
     public partial class Menu_Form : Form
     {
@@ -21,7 +21,7 @@ namespace EstudoInterface2
 
             conexaoUsuario = DadosUsuario;
 
-            string returnDados = conexao.queryUser(DadosUsuario);
+            conexao.queryUser(DadosUsuario);
 
             string id = conexao.returnId.ToString();
             string nome = conexao.returnNome.ToString();
