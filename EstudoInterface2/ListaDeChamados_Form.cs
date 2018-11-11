@@ -35,6 +35,7 @@ namespace MIPHelpDesk
             string atual = dgChamados.CurrentCell.ToString();
             Chamado_Form chamadoFrm = new Chamado_Form(idChamado);
             chamadoFrm.Show();
+            this.Close();
         }
 
         private void PreencheChamados()

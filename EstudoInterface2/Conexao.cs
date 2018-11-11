@@ -23,6 +23,7 @@ namespace MIPHelpDesk
         public string returnAcesso { get; set; }
         public Boolean returnBloqueio { get; set; }
         public string returnSexo { get; set; }
+        public string returnStatus { get; set; }
         public string returnDataNasc { get; set; }
         public string returnNumDocumento { get; set; }
         public string returnEndereco { get; set; }
@@ -36,7 +37,7 @@ namespace MIPHelpDesk
         public string returnIdUsuario { get; set; }
         public string returnSolucao { get; set; }
 
-    MySqlConnection connection = new MySqlConnection("SERVER=localhost;DATABASE=helpdesk_mip;UID=root;PASSWORD=root;SSLMode=none");
+        MySqlConnection connection = new MySqlConnection("SERVER=localhost;DATABASE=helpdesk_mip;UID=root;PASSWORD=root;SSLMode=none");
 
         private bool OpenConnection()
         {
@@ -136,21 +137,21 @@ namespace MIPHelpDesk
             if (this.OpenConnection() == true)
             {
                 limpaValores();
-                string queryChamado = "SELECT `Id chamado`,`Nome`,`Contato`,`Descrição`,`Data de abertura`,`Tempo SLA`" + 
+                string queryChamado = "SELECT `Id usuario`,`Id tecnico`,`Id chamado`,`Nome`,`Contato`,`Descrição`,`Data de abertura`,`Tempo SLA`,`Status`" + 
                     "FROM view_chamados where `Id chamado` = " + idChamado + ";";
 
                 MySqlCommand cmd = new MySqlCommand(queryChamado, connection);
                 MySqlDataReader dadosChamado = cmd.ExecuteReader();
                 dadosChamado.Read();
                 returnId = dadosChamado.GetString("Id chamado");
-                returnTecnico = dadosChamado.GetString("Id tecnico");
-                returnUsuario = dadosChamado.GetString("Id usuario");
+                returnIdTecnico = dadosChamado.GetString("Id tecnico");
+                returnIdUsuario = dadosChamado.GetString("Id usuario");
                 returnNome = dadosChamado.GetString("Nome");
                 returnContato = dadosChamado.GetString("Contato");
                 returnDescricao = dadosChamado.GetString("Descrição");
                 returnDTAbertura = dadosChamado.GetString("Data de abertura");
                 returnTempoSLA = dadosChamado.GetString("Tempo SLA");
-                returnSolucao = dadosChamado.GetString("Solucao");
+                returnStatus = dadosChamado.GetString("Status");
 
                 CloseConnection();
             }
@@ -231,7 +232,7 @@ namespace MIPHelpDesk
                     MySqlCommand cmd = connection.CreateCommand();
 
                     cmd.CommandText = "UPDATE `helpdesk_mip`.`tbl_listachamados` SET"+
-                        "`id_tecnico_fechou`='"+id_tecnico+"', `data_fechamento`='now()', `status`='fechado', `solucao`='"+solucao+"'"+
+                        "`id_tecnico_fechou`='"+id_tecnico+"', `data_fechamento`=now(), `status`='fechado', `solucao`='"+solucao+"'"+
                         "WHERE `id_chamados`='"+id_chamado+"';";
 
                     cmd.ExecuteNonQuery();
@@ -261,8 +262,8 @@ namespace MIPHelpDesk
             returnDescricao = "";
             returnDTAbertura = "";
             returnTempoSLA = "";
-            returnTecnico = "";
-            returnUsuario = "";
+            returnIdTecnico = "";
+            returnIdUsuario = "";
             returnSolucao = "";
         }
     }

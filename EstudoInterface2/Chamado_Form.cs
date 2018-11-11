@@ -19,6 +19,7 @@ namespace MIPHelpDesk
         private string solucao { get; set; }
         private string contato { get; set; }
         private string descricao { get; set; }
+        private string status { get; set; }
 
 
         public Chamado_Form(int idCelula)
@@ -35,6 +36,7 @@ namespace MIPHelpDesk
             string dtAbertura = conexao.returnDTAbertura.ToString();
             string tempoSLA = conexao.returnTempoSLA.ToString();
             solucao = conexao.returnSolucao.ToString();
+            status = conexao.returnStatus.ToString();
 
             id_chamado.Text = idChamado;
             nome_chamado.Text = nome;
@@ -46,7 +48,7 @@ namespace MIPHelpDesk
 
         private void Chamado_Form_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void btn_Editar_Click(object sender, EventArgs e)
@@ -63,21 +65,28 @@ namespace MIPHelpDesk
 
         private void btn_Aplicar_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Deseja aplicar as atualizaçoes?", "Confirmação",
-         MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-         == DialogResult.Yes)
+            if (status == "fechado")
             {
-                contato_chamado.ReadOnly = true;
-                decricao_chamado.ReadOnly = true;
-                lb_Atualizar.Visible = false;
-                btn_Cancelar.Visible = false;
-                btn_Fechar.Visible = true;
-                btn_Atualizar.Visible = true;
-                btn_Editar.Visible = true;
-                btn_Aplicar.Visible = false;
+                MessageBox.Show("Chamado já fechado!","Informativo",MessageBoxButtons.OK);
+            }
+            else
+            { 
+                if (MessageBox.Show("Deseja aplicar as atualizaçoes?", "Confirmação",
+                 MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                 == DialogResult.Yes)
+                {
+                    contato_chamado.ReadOnly = true;
+                    decricao_chamado.ReadOnly = true;
+                    lb_Atualizar.Visible = false;
+                    btn_Cancelar.Visible = false;
+                    btn_Fechar.Visible = true;
+                    btn_Atualizar.Visible = true;
+                    btn_Editar.Visible = true;
+                    btn_Aplicar.Visible = false;
 
-                contato = contato_chamado.Text;
-                descricao = decricao_chamado.Text;
+                    contato = contato_chamado.Text;
+                    descricao = decricao_chamado.Text;
+                }
             }
         }
 
@@ -89,8 +98,15 @@ namespace MIPHelpDesk
 
         private void btn_Fechar_Click(object sender, EventArgs e)
         {
-            FecharChamado_Form fecharForm = new FecharChamado_Form();
-            fecharForm.Show();
+            if (status == "fechado")
+            {
+                MessageBox.Show("Chamado já fechado!", "Informativo", MessageBoxButtons.OK);
+            }
+            else
+            {
+                FecharChamado_Form fecharForm = new FecharChamado_Form(idChamado, idTecnico);
+                fecharForm.Show();
+            }
         }
     }
 }

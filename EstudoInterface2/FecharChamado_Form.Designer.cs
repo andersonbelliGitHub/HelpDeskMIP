@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FecharChamado_Form));
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.txtSolucao = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btn_cancelar = new System.Windows.Forms.Button();
             this.btn_Fechar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // richTextBox1
+            // txtSolucao
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(26, 71);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(370, 160);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
+            this.txtSolucao.Location = new System.Drawing.Point(26, 71);
+            this.txtSolucao.Name = "txtSolucao";
+            this.txtSolucao.Size = new System.Drawing.Size(370, 160);
+            this.txtSolucao.TabIndex = 1;
+            this.txtSolucao.Text = "";
             // 
             // label1
             // 
@@ -58,9 +58,10 @@
             this.btn_cancelar.Location = new System.Drawing.Point(423, 150);
             this.btn_cancelar.Name = "btn_cancelar";
             this.btn_cancelar.Size = new System.Drawing.Size(152, 36);
-            this.btn_cancelar.TabIndex = 2;
+            this.btn_cancelar.TabIndex = 3;
             this.btn_cancelar.Text = "Cancelar";
             this.btn_cancelar.UseVisualStyleBackColor = true;
+            this.btn_cancelar.Click += new System.EventHandler(this.btn_cancelar_Click);
             // 
             // btn_Fechar
             // 
@@ -68,7 +69,7 @@
             this.btn_Fechar.Location = new System.Drawing.Point(423, 95);
             this.btn_Fechar.Name = "btn_Fechar";
             this.btn_Fechar.Size = new System.Drawing.Size(152, 36);
-            this.btn_Fechar.TabIndex = 3;
+            this.btn_Fechar.TabIndex = 2;
             this.btn_Fechar.Text = "Fechar chamado";
             this.btn_Fechar.UseVisualStyleBackColor = true;
             this.btn_Fechar.Click += new System.EventHandler(this.btn_Fechar_Click);
@@ -82,7 +83,7 @@
             this.Controls.Add(this.btn_Fechar);
             this.Controls.Add(this.btn_cancelar);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.txtSolucao);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FecharChamado_Form";
@@ -93,7 +94,7 @@
 
         #endregion
 
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox txtSolucao;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btn_cancelar;
         private System.Windows.Forms.Button btn_Fechar;
