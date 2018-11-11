@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EstudoInterface2", "EstudoInterface2\EstudoInterface2.csproj", "{7E4D2A0E-C1B2-4092-904E-1B781467676D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MIP-HelpDesk", "EstudoInterface2\MIP-HelpDesk.csproj", "{7E4D2A0E-C1B2-4092-904E-1B781467676D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

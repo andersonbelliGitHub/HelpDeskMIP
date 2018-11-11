@@ -28,61 +28,57 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.dataSet1BindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.lstchamados = new System.Windows.Forms.DataGridView();
-            this.id_usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nome_usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.login_usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.lstchamados)).BeginInit();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListaDeChamados_Form));
+            this.btn_atualiza = new System.Windows.Forms.Button();
+            this.dgChamados = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgChamados)).BeginInit();
             this.SuspendLayout();
             // 
-            // lstchamados
+            // btn_atualiza
             // 
-            this.lstchamados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.lstchamados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.id_usuario,
-            this.nome_usuario,
-            this.login_usuario});
-            this.lstchamados.Location = new System.Drawing.Point(61, 37);
-            this.lstchamados.Name = "lstchamados";
-            this.lstchamados.Size = new System.Drawing.Size(343, 150);
-            this.lstchamados.TabIndex = 0;
+            this.btn_atualiza.Location = new System.Drawing.Point(12, 258);
+            this.btn_atualiza.Name = "btn_atualiza";
+            this.btn_atualiza.Size = new System.Drawing.Size(75, 23);
+            this.btn_atualiza.TabIndex = 0;
+            this.btn_atualiza.Text = "Atualizar";
+            this.btn_atualiza.UseVisualStyleBackColor = true;
+            this.btn_atualiza.Click += new System.EventHandler(this.btn_atualiza_Click);
             // 
-            // id_usuario
+            // dgChamados
             // 
-            this.id_usuario.HeaderText = "id";
-            this.id_usuario.Name = "id_usuario";
-            // 
-            // nome_usuario
-            // 
-            this.nome_usuario.HeaderText = "Nome";
-            this.nome_usuario.Name = "nome_usuario";
-            // 
-            // login_usuario
-            // 
-            this.login_usuario.HeaderText = "Login";
-            this.login_usuario.Name = "login_usuario";
+            this.dgChamados.AccessibleRole = System.Windows.Forms.AccessibleRole.Row;
+            this.dgChamados.AllowUserToAddRows = false;
+            this.dgChamados.AllowUserToDeleteRows = false;
+            this.dgChamados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgChamados.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgChamados.BackgroundColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.dgChamados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgChamados.Location = new System.Drawing.Point(12, 12);
+            this.dgChamados.Name = "dgChamados";
+            this.dgChamados.ReadOnly = true;
+            this.dgChamados.Size = new System.Drawing.Size(641, 229);
+            this.dgChamados.TabIndex = 1;
+            this.dgChamados.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgChamados_CellDoubleClick);
             // 
             // ListaDeChamados_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.lstchamados);
+            this.ClientSize = new System.Drawing.Size(662, 450);
+            this.Controls.Add(this.dgChamados);
+            this.Controls.Add(this.btn_atualiza);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ListaDeChamados_Form";
-            this.Text = "ListaDeChamados_Form";
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet1BindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lstchamados)).EndInit();
+            this.Text = "Lista de chamados";
+            this.Load += new System.EventHandler(this.ListaDeChamados_Form_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgChamados)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.BindingSource dataSet1BindingSource;
-        private System.Windows.Forms.DataGridView lstchamados;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_usuario;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nome_usuario;
-        private System.Windows.Forms.DataGridViewTextBoxColumn login_usuario;
+
+        private System.Windows.Forms.Button btn_atualiza;
+        private System.Windows.Forms.DataGridView dgChamados;
     }
 }

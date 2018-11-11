@@ -34,14 +34,12 @@
             this.tb_contato = new System.Windows.Forms.TextBox();
             this.label = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.cb_tipoProblema = new System.Windows.Forms.ComboBox();
             this.num_usuarioAfetado = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txt_descricao = new System.Windows.Forms.TextBox();
-            this.sair = new System.Windows.Forms.LinkLabel();
-            this.lbNome = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.cb_tipoProblema = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.num_usuarioAfetado)).BeginInit();
             this.SuspendLayout();
@@ -126,6 +124,17 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(416, 309);
             this.tableLayoutPanel1.TabIndex = 30;
             // 
+            // cb_tipoProblema
+            // 
+            this.cb_tipoProblema.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cb_tipoProblema.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_tipoProblema.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.cb_tipoProblema.FormattingEnabled = true;
+            this.cb_tipoProblema.Location = new System.Drawing.Point(105, 75);
+            this.cb_tipoProblema.Name = "cb_tipoProblema";
+            this.cb_tipoProblema.Size = new System.Drawing.Size(308, 32);
+            this.cb_tipoProblema.TabIndex = 33;
+            // 
             // num_usuarioAfetado
             // 
             this.num_usuarioAfetado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -188,61 +197,23 @@
             this.txt_descricao.Text = "Descreva brevemente o problema do usuário";
             this.txt_descricao.WordWrap = false;
             // 
-            // sair
-            // 
-            this.sair.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.sair.AutoSize = true;
-            this.sair.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.sair.Location = new System.Drawing.Point(493, 9);
-            this.sair.Name = "sair";
-            this.sair.Size = new System.Drawing.Size(34, 18);
-            this.sair.TabIndex = 6;
-            this.sair.TabStop = true;
-            this.sair.Text = "Sair";
-            this.sair.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lbNome
-            // 
-            this.lbNome.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.lbNome.AutoSize = true;
-            this.lbNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbNome.Location = new System.Drawing.Point(118, 9);
-            this.lbNome.Name = "lbNome";
-            this.lbNome.Size = new System.Drawing.Size(30, 25);
-            this.lbNome.TabIndex = 32;
-            this.lbNome.Text = "...";
-            this.lbNome.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(26, 9);
+            this.label1.Location = new System.Drawing.Point(125, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(106, 25);
+            this.label1.Size = new System.Drawing.Size(218, 25);
             this.label1.TabIndex = 31;
-            this.label1.Text = "Técnico:  ";
+            this.label1.Text = "Abertura de chamado";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // cb_tipoProblema
-            // 
-            this.cb_tipoProblema.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.cb_tipoProblema.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_tipoProblema.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.cb_tipoProblema.FormattingEnabled = true;
-            this.cb_tipoProblema.Location = new System.Drawing.Point(105, 75);
-            this.cb_tipoProblema.Name = "cb_tipoProblema";
-            this.cb_tipoProblema.Size = new System.Drawing.Size(308, 32);
-            this.cb_tipoProblema.TabIndex = 33;
             // 
             // AbrirChamado_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(539, 475);
-            this.Controls.Add(this.sair);
-            this.Controls.Add(this.lbNome);
+            this.ClientSize = new System.Drawing.Size(490, 386);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -264,8 +235,6 @@
         private System.Windows.Forms.Label label;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.NumericUpDown num_usuarioAfetado;
-        private System.Windows.Forms.LinkLabel sair;
-        private System.Windows.Forms.Label lbNome;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;

@@ -4,16 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace EstudoInterface2
 {
     class Conexao
     {
         /*
-         * LÍDER TÉCNICO no banco de dados terá "acesso=1"
+         * LÍDER TÉCNICO (administrador) no banco de dados terá "acesso=1"
          * TÉCNICO "acesso=2"
-         * 
          * USUARIO "acesso=4" 
+         * 
         */
         public string returnNome { get; set; }
         public string returnId { get; set; }
@@ -52,7 +53,7 @@ namespace EstudoInterface2
             }
         }
 
-        private bool CloseConnection()
+        public bool CloseConnection()
         {
             try
             {
@@ -91,7 +92,7 @@ namespace EstudoInterface2
             }
             else
             {
-                MessageBox.Show("Conexão com bando de dados falhou!");
+                MessageBox.Show("Conexão com banco de dados falhou!");
             }
             return retorno + retornoLogin;
 
@@ -122,12 +123,26 @@ namespace EstudoInterface2
             return returnId + returnNome + returnSobrenome + returnAcesso + returnBloqueio;
         }
 
-        public string queryChamados() {
+        public DataTable queryChamados() {
+            DataTable dtChamados = null;
             if (this.OpenConnection() == true) {
-                //string queryChamados = "";
-            }
+                string queryChamados = "SELECT id,nome,contato,descrição,'data de abertura',tempo FROM view_chamados;";
+                MySqlCommand cmd = new MySqlCommand(queryChamados, connection);
 
-            return null;
+                try {
+                    MySqlDataAdapter objAdp = new MySqlDataAdapter(cmd);
+                    dtChamados = new DataTable();
+
+                    objAdp.Fill(dtChamados);
+
+                    //return dtChamados;
+                }
+                catch
+                {
+                    MessageBox.Show("Ops! Algo deu errado");
+                }
+            }
+            return dtChamados;
         }
 
         public void insertChamados(int id_tecnico,int id_usuario,int id_problema, string descricao, string contato)

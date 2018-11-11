@@ -23,7 +23,7 @@ namespace EstudoInterface2
         public AbrirChamado_Form(string Tecnico)
         {
             InitializeComponent();
-
+            
             // Exibe as opções no dropBox
             Dictionary<string, string> dadosProblemas = new Dictionary<string, string>();
 
@@ -39,19 +39,39 @@ namespace EstudoInterface2
 
             //Pega valor do comboBox
             //string problema = ((KeyValuePair<string, string>)cb_tipoProblema.SelectedItem).Value;
-            string problema = (cb_tipoProblema.SelectedItem.ToString()).Substring(1,1);
 
+            id_tecnico = Convert.ToInt32(Tecnico);
+        }
+
+        public string retornaDados()
+        {
+            string problema = (cb_tipoProblema.SelectedItem.ToString()).Substring(1, 1);
 
             id_usuario = Convert.ToInt32(num_usuarioAfetado.Value);
-            id_tecnico = Convert.ToInt32(Tecnico);
+            
             id_problema = Convert.ToInt32(problema);
             descricao = txt_descricao.Text;
             contato = tb_contato.Text;
+
+            return id_usuario + descricao + contato;
         }
 
         private void abrirChamado_Click(object sender, EventArgs e)
         {
-            conexao.insertChamados(id_usuario, id_tecnico, id_problema, descricao, contato);
+            retornaDados();
+            try
+            {
+                conexao.insertChamados(id_tecnico, id_usuario, id_problema, descricao, contato);
+                MessageBox.Show("Chamado aberto com sucesso!");
+                this.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Usuário não encontrado");
+                conexao.CloseConnection();
+                id_usuario = 0;
+                retornaDados();
+            }
         }
     }
 }
