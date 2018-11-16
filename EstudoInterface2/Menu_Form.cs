@@ -56,5 +56,11 @@ namespace MIPHelpDesk
             AbrirChamado_Form abrirChamadoForm = new AbrirChamado_Form(conexao.returnId.ToString());
             abrirChamadoForm.Show();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Consultar_Chamado consultar_Chamado = new Consultar_Chamado();
+            consultar_Chamado.Show();
+        }
     }
 }

@@ -34,6 +34,7 @@ namespace MIPHelpDesk
         public string returnDTAbertura { get; set; }
         public string returnTempoSLA { get; set; }
         public string returnIdTecnico { get; set; }
+        public string returnTecnicoFechou { get; set; }
         public string returnIdUsuario { get; set; }
         public string returnSolucao { get; set; }
 
@@ -137,7 +138,7 @@ namespace MIPHelpDesk
             if (this.OpenConnection() == true)
             {
                 limpaValores();
-                string queryChamado = "SELECT `Id usuario`,`Id tecnico`,`Id chamado`,`Nome`,`Contato`,`Descrição`,`Data de abertura`,`Tempo SLA`,`Status`" + 
+                string queryChamado = "SELECT `Id usuario`,`Id tecnico`,`Id chamado`,`Nome`,`Contato`,`Descrição`,`Data de abertura`,`Tempo SLA`,`Status`,`solucao`,`Tecnico fechou`" + 
                     "FROM view_chamados where `Id chamado` = " + idChamado + ";";
 
                 MySqlCommand cmd = new MySqlCommand(queryChamado, connection);
@@ -152,6 +153,8 @@ namespace MIPHelpDesk
                 returnDTAbertura = dadosChamado.GetString("Data de abertura");
                 returnTempoSLA = dadosChamado.GetString("Tempo SLA");
                 returnStatus = dadosChamado.GetString("Status");
+                returnSolucao = dadosChamado.GetString("Solucao");
+                returnTecnicoFechou = dadosChamado.GetString("Tecnico fechou");
 
                 CloseConnection();
             }
@@ -190,8 +193,8 @@ namespace MIPHelpDesk
                 MySqlCommand cmd = connection.CreateCommand();
 
                 cmd.CommandText = "INSERT INTO `helpdesk_mip`.`tbl_listachamados`" +
-                    "(`id_usuario_afetado`, `id_tecnico`, `id_problema`, `descricao_chamado`, `data_abertura`, `status`,`contato`)" +
-                    "VALUES('" + id_usuario + "', '" + id_tecnico + "', '" + id_problema + "', '" + descricao + "', now(), 'aberto','" + contato + "');";
+                                        "(`id_usuario_afetado`, `id_tecnico`, `id_problema`, `descricao_chamado`, `data_abertura`, `status`,`contato`,`solucao`)" +
+                                        "VALUES('" + id_usuario + "', '" + id_tecnico + "', '" + id_problema + "', '" + descricao + "', now(), 'aberto','" + contato + "', 'Chamado ainda aberto. Sem solução.');";
 
                 cmd.ExecuteNonQuery();
                 CloseConnection();

@@ -20,6 +20,7 @@ namespace MIPHelpDesk
         private string contato { get; set; }
         private string descricao { get; set; }
         private string status { get; set; }
+        private string tecnicoFechou { get; set; }
 
 
         public Chamado_Form(int idCelula)
@@ -37,6 +38,7 @@ namespace MIPHelpDesk
             string tempoSLA = conexao.returnTempoSLA.ToString();
             solucao = conexao.returnSolucao.ToString();
             status = conexao.returnStatus.ToString();
+            tecnicoFechou = conexao.returnTecnicoFechou.ToString();
 
             id_chamado.Text = idChamado;
             nome_chamado.Text = nome;
@@ -44,11 +46,15 @@ namespace MIPHelpDesk
             decricao_chamado.Text = descricao;
             dtAbertura_chamado.Text = dtAbertura;
             sla_chamado.Text = tempoSLA + " horas";
-        }
 
-        private void Chamado_Form_Load(object sender, EventArgs e)
-        {
-            
+            if (status=="fechado")
+            {
+                lb_fechado.Text = "Chamado fechado por: "+ tecnicoFechou;
+                solucao_chamado.Text = solucao;
+                lb_fechado.Visible = true;
+                btn_Editar.Visible = false;
+                btn_Fechar.Visible = false;
+            }
         }
 
         private void btn_Editar_Click(object sender, EventArgs e)
@@ -77,7 +83,8 @@ namespace MIPHelpDesk
                 {
                     contato_chamado.ReadOnly = true;
                     decricao_chamado.ReadOnly = true;
-                    lb_Atualizar.Visible = false;
+                    lb_Atualizar.Visible = true;
+                    lb_Atualizar.Text = "Clique em atualizar para aplicar as mudanças";
                     btn_Cancelar.Visible = false;
                     btn_Fechar.Visible = true;
                     btn_Atualizar.Visible = true;
@@ -107,6 +114,11 @@ namespace MIPHelpDesk
                 FecharChamado_Form fecharForm = new FecharChamado_Form(idChamado, idTecnico);
                 fecharForm.Show();
             }
+        }
+
+        private void btn_Cancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
