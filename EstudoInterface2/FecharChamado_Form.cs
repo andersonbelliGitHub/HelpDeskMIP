@@ -31,7 +31,8 @@ namespace MIPHelpDesk
             MessageBox.Show("Chamado fechado!");
             this.Close();
             ListaDeChamados_Form listaDeChamados = new ListaDeChamados_Form();
-            listaDeChamados.Show();
+            Chamado_Form chamado_Form = new Chamado_Form(Convert.ToInt32(idChamado));
+            chamado_Form.Show();
         }
 
         private void btn_cancelar_Click(object sender, EventArgs e)
@@ -41,6 +42,8 @@ namespace MIPHelpDesk
          == DialogResult.Yes)
             {
                 this.Close();
+                Chamado_Form chamado_Form = new Chamado_Form(Convert.ToInt32(idChamado));
+                chamado_Form.Show();
             }
         }
     }

@@ -33,7 +33,7 @@
             this.nome_chamado = new System.Windows.Forms.Label();
             this.sla_chamado = new System.Windows.Forms.Label();
             this.dtAbertura_chamado = new System.Windows.Forms.Label();
-            this.decricao_chamado = new System.Windows.Forms.RichTextBox();
+            this.descricao_chamado = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -53,6 +53,7 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label7 = new System.Windows.Forms.Label();
+            this.lb_dtFechamento = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -100,15 +101,15 @@
             this.dtAbertura_chamado.TabIndex = 4;
             this.dtAbertura_chamado.Text = "dt_abertura";
             // 
-            // decricao_chamado
+            // descricao_chamado
             // 
-            this.decricao_chamado.Font = new System.Drawing.Font("Open Sans", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.decricao_chamado.Location = new System.Drawing.Point(487, 35);
-            this.decricao_chamado.Name = "decricao_chamado";
-            this.decricao_chamado.ReadOnly = true;
-            this.decricao_chamado.Size = new System.Drawing.Size(318, 170);
-            this.decricao_chamado.TabIndex = 5;
-            this.decricao_chamado.Text = "";
+            this.descricao_chamado.Font = new System.Drawing.Font("Open Sans", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.descricao_chamado.Location = new System.Drawing.Point(487, 35);
+            this.descricao_chamado.Name = "descricao_chamado";
+            this.descricao_chamado.ReadOnly = true;
+            this.descricao_chamado.Size = new System.Drawing.Size(318, 170);
+            this.descricao_chamado.TabIndex = 5;
+            this.descricao_chamado.Text = "";
             // 
             // label1
             // 
@@ -264,7 +265,7 @@
             // 
             this.lb_fechado.AutoSize = true;
             this.lb_fechado.Font = new System.Drawing.Font("Open Sans Extrabold", 16F, System.Drawing.FontStyle.Bold);
-            this.lb_fechado.Location = new System.Drawing.Point(304, 11);
+            this.lb_fechado.Location = new System.Drawing.Point(307, 13);
             this.lb_fechado.Name = "lb_fechado";
             this.lb_fechado.Size = new System.Drawing.Size(224, 30);
             this.lb_fechado.TabIndex = 22;
@@ -277,12 +278,14 @@
             this.solucao_chamado.Font = new System.Drawing.Font("Open Sans", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.solucao_chamado.Location = new System.Drawing.Point(13, 48);
             this.solucao_chamado.Name = "solucao_chamado";
+            this.solucao_chamado.ReadOnly = true;
             this.solucao_chamado.Size = new System.Drawing.Size(273, 134);
             this.solucao_chamado.TabIndex = 23;
             this.solucao_chamado.Text = "";
             // 
             // splitContainer1
             // 
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.splitContainer1.Location = new System.Drawing.Point(13, 38);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -291,10 +294,11 @@
             // 
             this.splitContainer1.Panel1.Controls.Add(this.tableLayoutPanel1);
             this.splitContainer1.Panel1.Controls.Add(this.label3);
-            this.splitContainer1.Panel1.Controls.Add(this.decricao_chamado);
+            this.splitContainer1.Panel1.Controls.Add(this.descricao_chamado);
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.lb_dtFechamento);
             this.splitContainer1.Panel2.Controls.Add(this.label7);
             this.splitContainer1.Panel2.Controls.Add(this.solucao_chamado);
             this.splitContainer1.Panel2.Controls.Add(this.btn_Fechar);
@@ -345,6 +349,17 @@
             this.label7.TabIndex = 13;
             this.label7.Text = "Solução:";
             // 
+            // lb_dtFechamento
+            // 
+            this.lb_dtFechamento.AutoSize = true;
+            this.lb_dtFechamento.Font = new System.Drawing.Font("Open Sans Extrabold", 16F, System.Drawing.FontStyle.Bold);
+            this.lb_dtFechamento.Location = new System.Drawing.Point(307, 46);
+            this.lb_dtFechamento.Name = "lb_dtFechamento";
+            this.lb_dtFechamento.Size = new System.Drawing.Size(212, 30);
+            this.lb_dtFechamento.TabIndex = 24;
+            this.lb_dtFechamento.Text = "Data fechamento";
+            this.lb_dtFechamento.Visible = false;
+            // 
             // Chamado_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -376,7 +391,7 @@
         private System.Windows.Forms.Label nome_chamado;
         private System.Windows.Forms.Label sla_chamado;
         private System.Windows.Forms.Label dtAbertura_chamado;
-        private System.Windows.Forms.RichTextBox decricao_chamado;
+        private System.Windows.Forms.RichTextBox descricao_chamado;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
@@ -396,5 +411,6 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Label lb_dtFechamento;
     }
 }

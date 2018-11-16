@@ -39,17 +39,19 @@ namespace MIPHelpDesk
             solucao = conexao.returnSolucao.ToString();
             status = conexao.returnStatus.ToString();
             tecnicoFechou = conexao.returnTecnicoFechou.ToString();
+            string dtFechamento = conexao.returnDTFechamento.ToString();
 
             id_chamado.Text = idChamado;
             nome_chamado.Text = nome;
             contato_chamado.Text = contato;
-            decricao_chamado.Text = descricao;
+            descricao_chamado.Text = descricao;
             dtAbertura_chamado.Text = dtAbertura;
             sla_chamado.Text = tempoSLA + " horas";
 
             if (status=="fechado")
             {
-                lb_fechado.Text = "Chamado fechado por: "+ tecnicoFechou;
+                lb_fechado.Text = "Fechado por: "+ tecnicoFechou;
+                lb_dtFechamento.Text = "Data de fechamento: " + dtFechamento;
                 solucao_chamado.Text = solucao;
                 lb_fechado.Visible = true;
                 btn_Editar.Visible = false;
@@ -60,7 +62,8 @@ namespace MIPHelpDesk
         private void btn_Editar_Click(object sender, EventArgs e)
         {
             contato_chamado.ReadOnly = false;
-            decricao_chamado.ReadOnly = false;
+            descricao_chamado.ReadOnly = false;
+            descricao_chamado.BackColor = Color.White;
             lb_Atualizar.Visible = true;
             btn_Cancelar.Visible = true;
             btn_Fechar.Visible = false;
@@ -82,7 +85,7 @@ namespace MIPHelpDesk
                  == DialogResult.Yes)
                 {
                     contato_chamado.ReadOnly = true;
-                    decricao_chamado.ReadOnly = true;
+                    descricao_chamado.ReadOnly = true;
                     lb_Atualizar.Visible = true;
                     lb_Atualizar.Text = "Clique em atualizar para aplicar as mudanças";
                     btn_Cancelar.Visible = false;
@@ -92,7 +95,7 @@ namespace MIPHelpDesk
                     btn_Aplicar.Visible = false;
 
                     contato = contato_chamado.Text;
-                    descricao = decricao_chamado.Text;
+                    descricao = descricao_chamado.Text;
                 }
             }
         }
@@ -101,6 +104,8 @@ namespace MIPHelpDesk
         {
             conexao.updateChamado(Convert.ToInt32(idChamado),contato,descricao);
             MessageBox.Show("Chamado atualizado com sucesso!");
+            btn_Atualizar.Visible = false;
+            lb_Atualizar.Visible = false;
         }
 
         private void btn_Fechar_Click(object sender, EventArgs e)
@@ -113,12 +118,20 @@ namespace MIPHelpDesk
             {
                 FecharChamado_Form fecharForm = new FecharChamado_Form(idChamado, idTecnico);
                 fecharForm.Show();
+                this.Close();
             }
         }
 
         private void btn_Cancelar_Click(object sender, EventArgs e)
         {
-            this.Close();
+            contato_chamado.ReadOnly = true;
+            descricao_chamado.ReadOnly = true;
+            lb_Atualizar.Visible = false;
+            btn_Cancelar.Visible = false;
+            btn_Fechar.Visible = true;
+            btn_Atualizar.Visible = false;
+            btn_Aplicar.Visible = false;
+            btn_Editar.Visible = true;
         }
     }
 }
