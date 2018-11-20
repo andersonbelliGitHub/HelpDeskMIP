@@ -47,10 +47,12 @@
             // abrirChamado
             // 
             this.abrirChamado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.abrirChamado.BackColor = System.Drawing.SystemColors.Desktop;
+            this.abrirChamado.BackColor = System.Drawing.SystemColors.Highlight;
+            this.abrirChamado.BackgroundImage = global::MIPHelpDesk.Properties.Resources.fundoTela;
+            this.abrirChamado.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.abrirChamado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.abrirChamado.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.25F);
-            this.abrirChamado.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.abrirChamado.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.abrirChamado.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.abrirChamado.Location = new System.Drawing.Point(105, 259);
             this.abrirChamado.Name = "abrirChamado";
             this.abrirChamado.Size = new System.Drawing.Size(308, 35);
@@ -70,18 +72,21 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(96, 61);
             this.label5.TabIndex = 26;
-            this.label5.Text = "Contato";
+            this.label5.Text = "*Contato";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // tb_contato
             // 
             this.tb_contato.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tb_contato.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.tb_contato.ForeColor = System.Drawing.Color.DarkGray;
             this.tb_contato.Location = new System.Drawing.Point(105, 202);
             this.tb_contato.Name = "tb_contato";
             this.tb_contato.Size = new System.Drawing.Size(308, 23);
             this.tb_contato.TabIndex = 4;
-            this.tb_contato.Text = "abellis456";
+            this.tb_contato.Text = "Telefone ou email";
+            this.tb_contato.Enter += new System.EventHandler(this.tb_contato_Enter);
+            this.tb_contato.Leave += new System.EventHandler(this.tb_contato_Leave);
             // 
             // label
             // 
@@ -152,7 +157,7 @@
             this.num_usuarioAfetado.Size = new System.Drawing.Size(205, 33);
             this.num_usuarioAfetado.TabIndex = 1;
             this.num_usuarioAfetado.Value = new decimal(new int[] {
-            1000,
+            9999,
             0,
             0,
             0});
@@ -182,13 +187,14 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(96, 61);
             this.label3.TabIndex = 27;
-            this.label3.Text = "Descrição do problema";
+            this.label3.Text = "*Descrição do problema";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txt_descricao
             // 
             this.txt_descricao.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_descricao.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txt_descricao.ForeColor = System.Drawing.Color.DarkGray;
             this.txt_descricao.Location = new System.Drawing.Point(105, 125);
             this.txt_descricao.Multiline = true;
             this.txt_descricao.Name = "txt_descricao";
@@ -196,15 +202,17 @@
             this.txt_descricao.TabIndex = 2;
             this.txt_descricao.Text = "Descreva brevemente o problema do usuário";
             this.txt_descricao.WordWrap = false;
+            this.txt_descricao.Enter += new System.EventHandler(this.txt_descricao_Enter);
+            this.txt_descricao.Leave += new System.EventHandler(this.txt_descricao_Leave);
             // 
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(125, 9);
+            this.label1.Font = new System.Drawing.Font("Open Sans", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(88, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(218, 25);
+            this.label1.Size = new System.Drawing.Size(311, 37);
             this.label1.TabIndex = 31;
             this.label1.Text = "Abertura de chamado";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;

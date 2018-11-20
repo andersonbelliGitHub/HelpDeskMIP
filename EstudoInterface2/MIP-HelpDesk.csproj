@@ -158,6 +158,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="registrar.ico" />
+    <Content Include="Resources\registrar.ico" />
+    <None Include="Resources\fundoTela.jpg" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">

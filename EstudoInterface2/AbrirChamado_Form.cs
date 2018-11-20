@@ -61,16 +61,62 @@ namespace MIPHelpDesk
             retornaDados();
             try
             {
-                conexao.insertChamados(id_tecnico, id_usuario, id_problema, descricao, contato);
-                MessageBox.Show("Chamado aberto com sucesso!");
-                this.Close();
+                if (txt_descricao.Text == "Descreva brevemente o problema do usuário" || tb_contato.Text == "Telefone ou email")
+                {
+                    MessageBox.Show("Campos com * são obrigatórios!");
+                    conexao.CloseConnection();
+                    id_usuario = 0;
+                    retornaDados();
+                }
+                else
+                {
+                    conexao.insertChamados(id_tecnico, id_usuario, id_problema, descricao, contato);
+                    MessageBox.Show("Chamado aberto com sucesso!");
+                    this.Close();
+                }
             }
             catch
             {
-                MessageBox.Show("Usuário não encontrado");
+                MessageBox.Show("Usuário não encontrado!");
                 conexao.CloseConnection();
                 id_usuario = 0;
                 retornaDados();
+            }
+        }
+
+        private void txt_descricao_Enter(object sender, EventArgs e)
+        {
+            if (txt_descricao.Text == "Descreva brevemente o problema do usuário")
+            {
+                txt_descricao.Text = "";
+                txt_descricao.ForeColor = Color.Black;
+            }
+        }
+
+        private void txt_descricao_Leave(object sender, EventArgs e)
+        {
+            if (txt_descricao.Text == "")
+            {
+                txt_descricao.Text = "Descreva brevemente o problema do usuário";
+                txt_descricao.ForeColor = Color.DarkGray;
+            }
+        }
+
+        private void tb_contato_Enter(object sender, EventArgs e)
+        {
+            if (tb_contato.Text == "Telefone ou email")
+            {
+                tb_contato.Text = "";
+                tb_contato.ForeColor = Color.Black;
+            }
+        }
+
+        private void tb_contato_Leave(object sender, EventArgs e)
+        {
+            if (tb_contato.Text == "")
+            {
+                tb_contato.Text = "Telefone ou email";
+                tb_contato.ForeColor = Color.DarkGray;
             }
         }
     }
