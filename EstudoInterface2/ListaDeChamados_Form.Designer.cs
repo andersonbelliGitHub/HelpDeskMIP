@@ -37,9 +37,11 @@
             // 
             // btn_atualiza
             // 
+            this.btn_atualiza.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_atualiza.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_atualiza.Location = new System.Drawing.Point(12, 289);
             this.btn_atualiza.Name = "btn_atualiza";
-            this.btn_atualiza.Size = new System.Drawing.Size(75, 23);
+            this.btn_atualiza.Size = new System.Drawing.Size(89, 31);
             this.btn_atualiza.TabIndex = 0;
             this.btn_atualiza.Text = "Atualizar";
             this.btn_atualiza.UseVisualStyleBackColor = true;
@@ -50,10 +52,11 @@
             this.dgChamados.AccessibleRole = System.Windows.Forms.AccessibleRole.Row;
             this.dgChamados.AllowUserToAddRows = false;
             this.dgChamados.AllowUserToDeleteRows = false;
+            this.dgChamados.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgChamados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgChamados.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dgChamados.BackgroundColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.dgChamados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgChamados.Location = new System.Drawing.Point(12, 54);
             this.dgChamados.Name = "dgChamados";
             this.dgChamados.ReadOnly = true;
@@ -77,10 +80,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(662, 332);
+            this.Controls.Add(this.btn_atualiza);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgChamados);
-            this.Controls.Add(this.btn_atualiza);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(678, 370);
             this.Name = "ListaDeChamados_Form";
             this.Text = "Lista de chamados";
             this.Load += new System.EventHandler(this.ListaDeChamados_Form_Load);

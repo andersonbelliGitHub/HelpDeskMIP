@@ -28,9 +28,24 @@ namespace MIPHelpDesk
             retorno = conexao.queryChamado(Convert.ToInt32(num_idChamado.Value));
             idChamado = conexao.returnId.ToString();
 
+            
             Chamado_Form chamado = new Chamado_Form(Convert.ToInt32(idChamado));
-            chamado.Show();
-            this.Close();
+            if (chamado != null)
+            {
+                if(Convert.ToInt32(idChamado) != 0)
+                {
+                    chamado.Show();
+                    this.Close();
+                }
+            }
+            else
+            {
+                if (idChamado == null)
+                {
+                    this.Close();
+                }
+                MessageBox.Show("Id não pode ficar vazio!");
+            }
         }
 
         private void btn_usuario_Click(object sender, EventArgs e)

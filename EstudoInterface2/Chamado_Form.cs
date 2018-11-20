@@ -51,6 +51,7 @@ namespace MIPHelpDesk
             if (status=="fechado")
             {
                 lb_fechado.Text = "Fechado por: "+ tecnicoFechou;
+                lb_dtFechamento.Visible = true;
                 lb_dtFechamento.Text = "Data de fechamento: " + dtFechamento;
                 solucao_chamado.Text = solucao;
                 lb_fechado.Visible = true;

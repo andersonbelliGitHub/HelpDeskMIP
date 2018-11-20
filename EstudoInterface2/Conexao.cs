@@ -39,6 +39,31 @@ namespace MIPHelpDesk
         public string returnSolucao { get; set; }
         public string returnDTFechamento { get; set; }
 
+        public Conexao (){
+            returnNome = "";
+            returnId = "";
+            returnIdProblema = 0;
+            returnSobrenome = "";
+            returnAcesso = "";
+            returnBloqueio = false;
+            returnSexo = "";
+            returnStatus = "";
+            returnDataNasc = "";
+            returnNumDocumento = "";
+            returnEndereco = "";
+            returnTelefone = "";
+            returnProblema = "";
+            returnContato = "";
+            returnDescricao = "";
+            returnDTAbertura = "";
+            returnTempoSLA = "";
+            returnIdTecnico = "";
+            returnTecnicoFechou = "";
+            returnIdUsuario = "";
+            returnSolucao = "";
+            returnDTFechamento = "";
+    }
+
         MySqlConnection connection = new MySqlConnection("SERVER=localhost;DATABASE=helpdesk_mip;UID=root;PASSWORD=root;SSLMode=none");
 
         private bool OpenConnection()
@@ -142,21 +167,41 @@ namespace MIPHelpDesk
                 string queryChamado = "SELECT `Id usuario`,`Id tecnico`,`Id chamado`,`Nome`,`Contato`,`Descrição`,`Data de abertura`,`Tempo SLA`,`Status`,`solucao`,`Tecnico fechou`,`Data de fechamento`" + 
                     "FROM view_chamados where `Id chamado` = " + idChamado + ";";
 
-                MySqlCommand cmd = new MySqlCommand(queryChamado, connection);
-                MySqlDataReader dadosChamado = cmd.ExecuteReader();
-                dadosChamado.Read();
-                returnId = dadosChamado.GetString("Id chamado");
-                returnIdTecnico = dadosChamado.GetString("Id tecnico");
-                returnIdUsuario = dadosChamado.GetString("Id usuario");
-                returnNome = dadosChamado.GetString("Nome");
-                returnContato = dadosChamado.GetString("Contato");
-                returnDescricao = dadosChamado.GetString("Descrição");
-                returnDTAbertura = dadosChamado.GetString("Data de abertura");
-                returnTempoSLA = dadosChamado.GetString("Tempo SLA");
-                returnStatus = dadosChamado.GetString("Status");
-                returnSolucao = dadosChamado.GetString("Solucao");
-                returnTecnicoFechou = dadosChamado.GetString("Tecnico fechou");
-                returnDTFechamento = dadosChamado.GetString("Data de fechamento");
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand(queryChamado, connection);
+                    MySqlDataReader dadosChamado = cmd.ExecuteReader();
+                    dadosChamado.Read();
+
+                    returnId = dadosChamado.GetString("Id chamado");
+                    returnIdTecnico = dadosChamado.GetString("Id tecnico");
+                    returnIdUsuario = dadosChamado.GetString("Id usuario");
+                    returnNome = dadosChamado.GetString("Nome");
+                    returnContato = dadosChamado.GetString("Contato");
+                    returnDescricao = dadosChamado.GetString("Descrição");
+                    returnDTAbertura = dadosChamado.GetString("Data de abertura");
+                    returnTempoSLA = dadosChamado.GetString("Tempo SLA");
+                    returnStatus = dadosChamado.GetString("Status");
+                    returnSolucao = dadosChamado.GetString("Solucao");
+                    returnTecnicoFechou = dadosChamado.GetString("Tecnico fechou");
+                    returnDTFechamento = dadosChamado.GetString("Data de fechamento");
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Chamado não encontrado!");
+                    returnId = "0";
+                    returnIdTecnico = "";
+                    returnIdUsuario = "";
+                    returnNome = "";
+                    returnContato = "";
+                    returnDescricao = "";
+                    returnDTAbertura = "";
+                    returnTempoSLA = "";
+                    returnStatus = "";
+                    returnSolucao = "";
+                    returnTecnicoFechou = "";
+                    returnDTFechamento = "";
+                }
 
                 CloseConnection();
             }
