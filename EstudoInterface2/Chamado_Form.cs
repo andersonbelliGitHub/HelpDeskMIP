@@ -22,7 +22,6 @@ namespace MIPHelpDesk
         private string status { get; set; }
         private string tecnicoFechou { get; set; }
 
-
         public Chamado_Form(int idCelula)
         {
             InitializeComponent();

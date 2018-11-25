@@ -39,12 +39,6 @@ namespace MIPHelpDesk
             loginForm.Show();
         }
 
-        private void alterar_perfil_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-                tableLayoutPanel2.Visible = true;
-                tableLayoutPanel1.Visible = false;
-        }
-
         private void lista_de_chamados_Click(object sender, EventArgs e)
         {
             ListaDeChamados_Form lstChamadosForm = new ListaDeChamados_Form();
@@ -57,10 +51,16 @@ namespace MIPHelpDesk
             abrirChamadoForm.Show();
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void consultar_chamado_Click(object sender, EventArgs e)
         {
             Consultar_Chamado consultar_Chamado = new Consultar_Chamado();
             consultar_Chamado.Show();
+        }
+
+        private void controle_usuarios_Click(object sender, EventArgs e)
+        {
+            ConsultarUsuario_Form consultarUsuario = new ConsultarUsuario_Form();
+            consultarUsuario.Show();
         }
     }
 }

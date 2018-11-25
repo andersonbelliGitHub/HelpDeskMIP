@@ -13,6 +13,7 @@ namespace MIPHelpDesk
     public partial class ListaDeChamados_Form : Form
     {
         Conexao conexao = new Conexao();
+
         public ListaDeChamados_Form()
         {
             InitializeComponent();

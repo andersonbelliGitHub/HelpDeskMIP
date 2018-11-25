@@ -16,9 +16,9 @@ namespace MIPHelpDesk
          * USUARIO "acesso=4" 
          * 
         */
+        public int returnIdProblema { get; set; }
         public string returnNome { get; set; }
         public string returnId { get; set; }
-        public int returnIdProblema { get; set; }
         public string returnSobrenome { get; set; }
         public string returnAcesso { get; set; }
         public Boolean returnBloqueio { get; set; }
@@ -139,7 +139,7 @@ namespace MIPHelpDesk
             {
                 limpaValores();
                 string queryUsuario = "select id_usuario,nome,sobrenome,acesso,bloqueio,sexo,data_nasc," +
-                    "num_documento,endereco,telefone from tbl_usuario where login='" + login + "'";
+                    "num_documento,endereco,telefone,login from tbl_usuario where login='" + login + "'";
 
                 MySqlCommand cmd = new MySqlCommand(queryUsuario, connection);
                 MySqlDataReader dadosUser = cmd.ExecuteReader();
@@ -166,7 +166,6 @@ namespace MIPHelpDesk
                 limpaValores();
                 string queryChamado = "SELECT `Id usuario`,`Id tecnico`,`Id chamado`,`Nome`,`Contato`,`Descrição`,`Data de abertura`,`Tempo SLA`,`Status`,`solucao`,`Tecnico fechou`,`Data de fechamento`" + 
                     "FROM view_chamados where `Id chamado` = " + idChamado + ";";
-
                 try
                 {
                     MySqlCommand cmd = new MySqlCommand(queryChamado, connection);
@@ -233,7 +232,8 @@ namespace MIPHelpDesk
             return dtChamados;
         }
 
-        public void insertChamados(int id_tecnico,int id_usuario,int id_problema, string descricao, string contato)
+        public void insertChamados(int id_tecnico,int id_usuario,int id_problema, 
+            string descricao, string contato)
         {
             if (this.OpenConnection() == true)
             {
@@ -284,6 +284,48 @@ namespace MIPHelpDesk
                     cmd.CommandText = "UPDATE `helpdesk_mip`.`tbl_listachamados` SET"+
                         "`id_tecnico_fechou`='"+id_tecnico+"', `data_fechamento`=now(), `status`='fechado', `solucao`='"+solucao+"'"+
                         "WHERE `id_chamados`='"+id_chamado+"';";
+
+                    cmd.ExecuteNonQuery();
+                    CloseConnection();
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Ops! Algo deu errado \n\n" + ex, " Erro conhecido!");
+                    CloseConnection();
+                }
+            }
+        }
+
+        public void insertUsuario(string nome, string sobrenome, string sexo, string telefone, 
+            string num_doc, string login, string senha,string acesso)
+        {
+            if (this.OpenConnection() == true)
+            {
+                MySqlCommand cmd = connection.CreateCommand();
+
+                cmd.CommandText =
+                    "INSERT INTO `helpdesk_mip`.`tbl_usuario`" +
+                        "(`nome`,`sobrenome`, `sexo`, `data_nasc`, `telefone`, `num_documento`, `login`, `senha`, `bloqueio`, `endereco`, `acesso`)" +
+                        "VALUES('" + nome + "', '" + sobrenome + "', '" + sexo + "', '0000-00-00', '" + telefone + "','" + num_doc + "','" + login + "','" + senha + "', '0', 'Não especificado', '" + acesso + "');";
+                
+                cmd.ExecuteNonQuery();
+                CloseConnection();
+            }
+        }
+
+        public void updateUsuario(int id, string nome, string sobrenome, string sexo, 
+            string telefone, string num_doc, string login, string senha, string acesso)
+        {
+            if (this.OpenConnection() == true)
+            {
+                limpaValores();
+                try
+                {
+                    MySqlCommand cmd = connection.CreateCommand();
+
+                    cmd.CommandText = "UPDATE `helpdesk_mip`.`tbl_usuario`" +
+                     "SET `nome`='" + nome + "', `sobrenome`='" + sobrenome + "', `sexo`='" + sexo + "', `num_documento`='" + num_doc +
+                     "', `telefone`='" + telefone + "', `login`='" + login + "', `senha`='" + senha + "' WHERE `id_usuario`='" + id + "';";
 
                     cmd.ExecuteNonQuery();
                     CloseConnection();

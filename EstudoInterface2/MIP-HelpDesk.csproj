@@ -86,6 +86,12 @@
     <Compile Include="ConsultarChamado_Form.Designer.cs">
       <DependentUpon>ConsultarChamado_Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsultarUsuario_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsultarUsuario_Form.Designer.cs">
+      <DependentUpon>ConsultarUsuario_Form.cs</DependentUpon>
+    </Compile>
     <Compile Include="FecharChamado_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,6 +126,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConsultarChamado_Form.resx">
       <DependentUpon>ConsultarChamado_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsultarUsuario_Form.resx">
+      <DependentUpon>ConsultarUsuario_Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FecharChamado_Form.resx">
       <DependentUpon>FecharChamado_Form.cs</DependentUpon>
