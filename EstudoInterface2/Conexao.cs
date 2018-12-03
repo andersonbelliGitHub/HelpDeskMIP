@@ -138,23 +138,28 @@ namespace MIPHelpDesk
             if (this.OpenConnection() == true)
             {
                 limpaValores();
-                string queryUsuario = "select id_usuario,nome,sobrenome,acesso,bloqueio,sexo,data_nasc," +
-                    "num_documento,endereco,telefone,login from tbl_usuario where login='" + login + "'";
-
-                MySqlCommand cmd = new MySqlCommand(queryUsuario, connection);
-                MySqlDataReader dadosUser = cmd.ExecuteReader();
-                dadosUser.Read();
-                returnId = dadosUser.GetString("id_usuario");
-                returnNome = dadosUser.GetString("nome");
-                returnSobrenome = dadosUser.GetString("sobrenome");
-                returnAcesso = dadosUser.GetString("acesso");
-                returnBloqueio = dadosUser.GetBoolean("bloqueio");
-                returnSexo = dadosUser.GetString("sexo");
-                returnDataNasc = dadosUser.GetString("data_nasc");
-                returnNumDocumento = dadosUser.GetString("num_documento");
-                returnEndereco = dadosUser.GetString("endereco");
-                returnTelefone = dadosUser.GetString("telefone");
-
+                string queryUsuario = "select id_usuario,nome,sobrenome,sexo,num_documento,telefone,acesso,bloqueio" +
+                    " from tbl_usuario where login='" + login + "'";
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand(queryUsuario, connection);
+                    MySqlDataReader dadosUser = cmd.ExecuteReader();
+                    dadosUser.Read();
+                    returnId = dadosUser.GetString("id_usuario");
+                    returnNome = dadosUser.GetString("nome");
+                    returnSobrenome = dadosUser.GetString("sobrenome");
+                    returnSexo = dadosUser.GetString("sexo");
+                    returnNumDocumento = dadosUser.GetString("num_documento");
+                    returnTelefone = dadosUser.GetString("telefone");
+                    returnAcesso = dadosUser.GetString("acesso");
+                    returnBloqueio = dadosUser.GetBoolean("bloqueio");
+                    CloseConnection();
+                }
+                catch(MySqlException ex)
+                {
+                    MessageBox.Show("Erro ao consultar usuário. \n Digite um LOGIN válido");
+                    CloseConnection();
+                }
             }
             return returnId + returnNome + returnSobrenome + returnAcesso + returnBloqueio;
         }
@@ -207,12 +212,25 @@ namespace MIPHelpDesk
             return returnId + returnNome + returnContato + returnDescricao + returnDTAbertura + returnDTAbertura + returnTempoSLA;
         }
 
+        public string queryUltimoChamado()
+        {
+            if (this.OpenConnection() == true)
+            {
+                string queryUltimoChamado = "SELECT `Id chamado`,`Nome`,`Contato`,`Descrição`,`Data de abertura`,`Tempo SLA` FROM view_chamados where `status` = 'aberto' order by `Id chamado` desc limit 1;";
+                MySqlCommand cmd = new MySqlCommand(queryUltimoChamado, connection);
+                MySqlDataReader dadosChamado = cmd.ExecuteReader();
+                dadosChamado.Read();
+                returnId = dadosChamado.GetString("Id chamado");
+                CloseConnection();
+            }
+            return returnId;
+        }
         public DataTable queryChamados()
         {
             DataTable dtChamados = null;
             if (this.OpenConnection() == true)
             {
-                string queryChamados = "SELECT `Id chamado`,`Nome`,`Contato`,`Descrição`,`Data de abertura`,`Tempo SLA` FROM view_chamados where `status` = 'aberto';";
+                string queryChamados = "SELECT `Id chamado`,`Nome`,`Contato`,`Descrição`,`Data de abertura`,`Tempo SLA` FROM view_chamados where `status` = 'aberto' order by `Id chamado` desc;";
                 MySqlCommand cmd = new MySqlCommand(queryChamados, connection);
 
                 try
@@ -305,8 +323,8 @@ namespace MIPHelpDesk
 
                 cmd.CommandText =
                     "INSERT INTO `helpdesk_mip`.`tbl_usuario`" +
-                        "(`nome`,`sobrenome`, `sexo`, `data_nasc`, `telefone`, `num_documento`, `login`, `senha`, `bloqueio`, `endereco`, `acesso`)" +
-                        "VALUES('" + nome + "', '" + sobrenome + "', '" + sexo + "', '0000-00-00', '" + telefone + "','" + num_doc + "','" + login + "','" + senha + "', '0', 'Não especificado', '" + acesso + "');";
+                        "(`nome`,`sobrenome`, `sexo`, `telefone`, `num_documento`, `login`, `senha`, `bloqueio`, `acesso`)" +
+                        "VALUES('" + nome + "', '" + sobrenome + "', '" + sexo + "','" + telefone + "','" + num_doc + "','" + login + "','" + senha + "', '0', '" + acesso + "');";
                 
                 cmd.ExecuteNonQuery();
                 CloseConnection();

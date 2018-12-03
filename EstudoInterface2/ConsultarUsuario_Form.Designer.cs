@@ -42,7 +42,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.txt_sexo = new System.Windows.Forms.TextBox();
-            this.txt_nome = new System.Windows.Forms.TextBox();
             this.txt_sobrenome = new System.Windows.Forms.TextBox();
             this.txt_telefone = new System.Windows.Forms.TextBox();
             this.txt_numDoc = new System.Windows.Forms.TextBox();
@@ -52,6 +51,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txt_senha1 = new System.Windows.Forms.TextBox();
             this.cb_acesso = new System.Windows.Forms.ComboBox();
+            this.txt_nome = new System.Windows.Forms.TextBox();
             this.btn_edit_usuario = new System.Windows.Forms.Button();
             this.btn_cad_usuario = new System.Windows.Forms.Button();
             this.login_user = new System.Windows.Forms.TextBox();
@@ -233,15 +233,6 @@
             this.txt_sexo.Size = new System.Drawing.Size(233, 28);
             this.txt_sexo.TabIndex = 17;
             // 
-            // txt_nome
-            // 
-            this.txt_nome.BackColor = System.Drawing.SystemColors.Window;
-            this.txt_nome.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_nome.Location = new System.Drawing.Point(256, 3);
-            this.txt_nome.Name = "txt_nome";
-            this.txt_nome.Size = new System.Drawing.Size(233, 28);
-            this.txt_nome.TabIndex = 18;
-            // 
             // txt_sobrenome
             // 
             this.txt_sobrenome.BackColor = System.Drawing.SystemColors.Window;
@@ -294,6 +285,7 @@
             this.txt_senha.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_senha.Location = new System.Drawing.Point(256, 195);
             this.txt_senha.Name = "txt_senha";
+            this.txt_senha.PasswordChar = '*';
             this.txt_senha.Size = new System.Drawing.Size(233, 28);
             this.txt_senha.TabIndex = 23;
             // 
@@ -313,6 +305,7 @@
             this.txt_senha1.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_senha1.Location = new System.Drawing.Point(256, 227);
             this.txt_senha1.Name = "txt_senha1";
+            this.txt_senha1.PasswordChar = '*';
             this.txt_senha1.Size = new System.Drawing.Size(233, 28);
             this.txt_senha1.TabIndex = 27;
             // 
@@ -326,6 +319,15 @@
             this.cb_acesso.Name = "cb_acesso";
             this.cb_acesso.Size = new System.Drawing.Size(247, 32);
             this.cb_acesso.TabIndex = 34;
+            // 
+            // txt_nome
+            // 
+            this.txt_nome.BackColor = System.Drawing.SystemColors.Window;
+            this.txt_nome.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_nome.Location = new System.Drawing.Point(256, 3);
+            this.txt_nome.Name = "txt_nome";
+            this.txt_nome.Size = new System.Drawing.Size(233, 28);
+            this.txt_nome.TabIndex = 18;
             // 
             // btn_edit_usuario
             // 
@@ -364,7 +366,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(525, 474);
+            this.ClientSize = new System.Drawing.Size(533, 485);
             this.Controls.Add(this.login_user);
             this.Controls.Add(this.dados_usuario);
             this.Controls.Add(this.label3);

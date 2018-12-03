@@ -71,7 +71,7 @@ namespace MIPHelpDesk
                 else
                 {
                     conexao.insertChamados(id_tecnico, id_usuario, id_problema, descricao, contato);
-                    MessageBox.Show("Chamado aberto com sucesso!");
+                    MessageBox.Show("Chamado aberto com sucesso! \n Numero do chamado: "+ conexao.queryUltimoChamado());
                     this.Close();
                 }
             }

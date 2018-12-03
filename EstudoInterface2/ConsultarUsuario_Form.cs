@@ -14,20 +14,23 @@ namespace MIPHelpDesk
     {
         Conexao conexao = new Conexao();
 
-        public int id { get; set; }
-        public string nome { get; set; }
-        public string sobrenome { get; set; }
-        public string sexo { get; set; }
-        public string telefone { get; set; }
-        public string num_doc { get; set; }
-        public string login { get; set; }
-        public string senha { get; set; }
-        public string senha1 { get; set; }
-        public string acesso { get; set; }
-
+        private int id { get; set; }
+        private string nome { get; set; }
+        private string sobrenome { get; set; }
+        private string sexo { get; set; }
+        private string telefone { get; set; }
+        private string num_doc { get; set; }
+        private string login { get; set; }
+        private string senha { get; set; }
+        private string senha1 { get; set; }
+        private string acesso { get; set; }
+        private int cont { get; set; }
+        
         public ConsultarUsuario_Form()
         {
             InitializeComponent();
+
+            cont = 0;
 
             btn_edit_usuario.Visible = false;
 
@@ -53,7 +56,7 @@ namespace MIPHelpDesk
 
             if (conexao.returnNome == "")
             {
-                MessageBox.Show("Usuário não encontra!");
+                MessageBox.Show("Usuário não encontrado!");
             }
             else
             {
@@ -63,14 +66,22 @@ namespace MIPHelpDesk
                 txt_sexo.Text = conexao.returnSexo.ToString();
                 txt_telefone.Text = conexao.returnTelefone.ToString();
                 txt_numDoc.Text = conexao.returnNumDocumento.ToString();
-                cb_acesso.Text = acesso;
-
+                cb_acesso.SelectedValue = conexao.returnAcesso.ToString();
             }
         }
 
-        public string retornaDados()
+        private string retornaDados()
         {
-            acesso = (cb_acesso.SelectedItem.ToString()).Substring(1, 1);
+            try
+            {
+                acesso = (cb_acesso.SelectedItem.ToString().Substring(0,1));
+            }
+            catch(Exception ex)
+            {
+                acesso = "3";
+                cont++; 
+            }
+            
             
             nome = txt_nome.Text;
             sobrenome = txt_sobrenome.Text;
@@ -97,7 +108,7 @@ namespace MIPHelpDesk
             {
                 id = Convert.ToInt32(conexao.returnId);
                 conexao.updateUsuario(id,nome, sobrenome, sexo, telefone, num_doc, login, senha, acesso);
-                MessageBox.Show("Usuário cadastrado com sucesso!");
+                MessageBox.Show("Usuário editado com sucesso!");
                 this.Close();
             }
         }
@@ -112,6 +123,17 @@ namespace MIPHelpDesk
             }
             else
             {
+                nome = txt_nome.Text;
+                sobrenome = txt_sobrenome.Text;
+                sexo = txt_sexo.Text;
+                telefone = txt_telefone.Text;
+                num_doc = txt_numDoc.Text;
+                login = txt_login.Text;
+                senha = txt_senha.Text;
+                if (cont == 0) {
+                    acesso = (cb_acesso.SelectedItem.ToString().Substring(0, 1));
+                }
+                
                 conexao.insertUsuario(nome, sobrenome, sexo, telefone, num_doc, login, senha, acesso);
                 MessageBox.Show("Usuário cadastrado com sucesso!");
                 this.Close();
