@@ -225,6 +225,21 @@ namespace MIPHelpDesk
             }
             return returnId;
         }
+
+        public string queryUltimoUsuario()
+        {
+            if (this.OpenConnection() == true)
+            {
+                string queryUltimoUsuario = "SELECT id_usuario FROM tbl_usuario order by id_usuario desc limit 1;";
+                MySqlCommand cmd = new MySqlCommand(queryUltimoUsuario, connection);
+                MySqlDataReader dadosUsuario = cmd.ExecuteReader();
+                dadosUsuario.Read();
+                returnId = dadosUsuario.GetString("id_usuario");
+                CloseConnection();
+            }
+            return returnId;
+        }
+
         public DataTable queryChamados()
         {
             DataTable dtChamados = null;
@@ -343,7 +358,7 @@ namespace MIPHelpDesk
 
                     cmd.CommandText = "UPDATE `helpdesk_mip`.`tbl_usuario`" +
                      "SET `nome`='" + nome + "', `sobrenome`='" + sobrenome + "', `sexo`='" + sexo + "', `num_documento`='" + num_doc +
-                     "', `telefone`='" + telefone + "', `login`='" + login + "', `senha`='" + senha + "' WHERE `id_usuario`='" + id + "';";
+                     "', `telefone`='" + telefone + "', `login`='" + login + "', `senha`='" + senha + "', `acesso`='" + acesso + "' WHERE `id_usuario`='" + id + "';";
 
                     cmd.ExecuteNonQuery();
                     CloseConnection();

@@ -74,14 +74,13 @@ namespace MIPHelpDesk
         {
             try
             {
-                acesso = (cb_acesso.SelectedItem.ToString().Substring(0,1));
+                acesso = (cb_acesso.SelectedItem.ToString().Substring(1,1));
             }
             catch(Exception ex)
             {
                 acesso = "3";
                 cont++; 
             }
-            
             
             nome = txt_nome.Text;
             sobrenome = txt_sobrenome.Text;
@@ -107,6 +106,11 @@ namespace MIPHelpDesk
             else
             {
                 id = Convert.ToInt32(conexao.returnId);
+                if (cont == 0)
+                {
+                    acesso = (cb_acesso.SelectedItem.ToString().Substring(1, 1));
+                    Console.Write("");
+                }
                 conexao.updateUsuario(id,nome, sobrenome, sexo, telefone, num_doc, login, senha, acesso);
                 MessageBox.Show("Usuário editado com sucesso!");
                 this.Close();
@@ -131,11 +135,11 @@ namespace MIPHelpDesk
                 login = txt_login.Text;
                 senha = txt_senha.Text;
                 if (cont == 0) {
-                    acesso = (cb_acesso.SelectedItem.ToString().Substring(0, 1));
+                    acesso = (cb_acesso.SelectedItem.ToString().Substring(1, 1));
                 }
                 
                 conexao.insertUsuario(nome, sobrenome, sexo, telefone, num_doc, login, senha, acesso);
-                MessageBox.Show("Usuário cadastrado com sucesso!");
+                MessageBox.Show("Usuário cadastrado com sucesso! \n Id será: "+ conexao.queryUltimoUsuario());
                 this.Close();
             }
         }

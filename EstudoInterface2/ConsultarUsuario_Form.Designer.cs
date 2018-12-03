@@ -91,7 +91,7 @@
             this.btn_consultar.Location = new System.Drawing.Point(368, 57);
             this.btn_consultar.Name = "btn_consultar";
             this.btn_consultar.Size = new System.Drawing.Size(116, 29);
-            this.btn_consultar.TabIndex = 9;
+            this.btn_consultar.TabIndex = 2;
             this.btn_consultar.Text = "Consultar";
             this.btn_consultar.UseVisualStyleBackColor = true;
             this.btn_consultar.Click += new System.EventHandler(this.btn_consultar_Click);
@@ -122,7 +122,6 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.Acesso, 0, 8);
             this.tableLayoutPanel1.Controls.Add(this.label10, 0, 7);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label6, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label5, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.label4, 0, 3);
@@ -138,6 +137,7 @@
             this.tableLayoutPanel1.Controls.Add(this.txt_senha1, 1, 7);
             this.tableLayoutPanel1.Controls.Add(this.cb_acesso, 1, 8);
             this.tableLayoutPanel1.Controls.Add(this.txt_nome, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 9;
@@ -178,11 +178,13 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Open Sans", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.label2.Location = new System.Drawing.Point(3, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(76, 26);
             this.label2.TabIndex = 6;
             this.label2.Text = "*Nome";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label6
             // 
@@ -200,9 +202,9 @@
             this.label5.Font = new System.Drawing.Font("Open Sans", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(3, 64);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(59, 26);
+            this.label5.Size = new System.Drawing.Size(120, 26);
             this.label5.TabIndex = 10;
-            this.label5.Text = "Sexo:";
+            this.label5.Text = "Sexo (M / F):";
             // 
             // label4
             // 
@@ -231,7 +233,7 @@
             this.txt_sexo.Location = new System.Drawing.Point(256, 67);
             this.txt_sexo.Name = "txt_sexo";
             this.txt_sexo.Size = new System.Drawing.Size(233, 28);
-            this.txt_sexo.TabIndex = 17;
+            this.txt_sexo.TabIndex = 5;
             // 
             // txt_sobrenome
             // 
@@ -240,7 +242,7 @@
             this.txt_sobrenome.Location = new System.Drawing.Point(256, 35);
             this.txt_sobrenome.Name = "txt_sobrenome";
             this.txt_sobrenome.Size = new System.Drawing.Size(233, 28);
-            this.txt_sobrenome.TabIndex = 19;
+            this.txt_sobrenome.TabIndex = 4;
             // 
             // txt_telefone
             // 
@@ -249,7 +251,7 @@
             this.txt_telefone.Location = new System.Drawing.Point(256, 99);
             this.txt_telefone.Name = "txt_telefone";
             this.txt_telefone.Size = new System.Drawing.Size(233, 28);
-            this.txt_telefone.TabIndex = 20;
+            this.txt_telefone.TabIndex = 6;
             // 
             // txt_numDoc
             // 
@@ -258,7 +260,7 @@
             this.txt_numDoc.Location = new System.Drawing.Point(256, 131);
             this.txt_numDoc.Name = "txt_numDoc";
             this.txt_numDoc.Size = new System.Drawing.Size(233, 28);
-            this.txt_numDoc.TabIndex = 21;
+            this.txt_numDoc.TabIndex = 7;
             // 
             // label9
             // 
@@ -277,7 +279,7 @@
             this.txt_login.Location = new System.Drawing.Point(256, 163);
             this.txt_login.Name = "txt_login";
             this.txt_login.Size = new System.Drawing.Size(233, 28);
-            this.txt_login.TabIndex = 25;
+            this.txt_login.TabIndex = 8;
             // 
             // txt_senha
             // 
@@ -287,7 +289,8 @@
             this.txt_senha.Name = "txt_senha";
             this.txt_senha.PasswordChar = '*';
             this.txt_senha.Size = new System.Drawing.Size(233, 28);
-            this.txt_senha.TabIndex = 23;
+            this.txt_senha.TabIndex = 9;
+            this.txt_senha.UseSystemPasswordChar = true;
             // 
             // label8
             // 
@@ -307,7 +310,8 @@
             this.txt_senha1.Name = "txt_senha1";
             this.txt_senha1.PasswordChar = '*';
             this.txt_senha1.Size = new System.Drawing.Size(233, 28);
-            this.txt_senha1.TabIndex = 27;
+            this.txt_senha1.TabIndex = 10;
+            this.txt_senha1.UseSystemPasswordChar = true;
             // 
             // cb_acesso
             // 
@@ -318,7 +322,7 @@
             this.cb_acesso.Location = new System.Drawing.Point(256, 259);
             this.cb_acesso.Name = "cb_acesso";
             this.cb_acesso.Size = new System.Drawing.Size(247, 32);
-            this.cb_acesso.TabIndex = 34;
+            this.cb_acesso.TabIndex = 11;
             // 
             // txt_nome
             // 
@@ -327,7 +331,7 @@
             this.txt_nome.Location = new System.Drawing.Point(256, 3);
             this.txt_nome.Name = "txt_nome";
             this.txt_nome.Size = new System.Drawing.Size(233, 28);
-            this.txt_nome.TabIndex = 18;
+            this.txt_nome.TabIndex = 3;
             // 
             // btn_edit_usuario
             // 
@@ -336,7 +340,7 @@
             this.btn_edit_usuario.Location = new System.Drawing.Point(75, 13);
             this.btn_edit_usuario.Name = "btn_edit_usuario";
             this.btn_edit_usuario.Size = new System.Drawing.Size(127, 34);
-            this.btn_edit_usuario.TabIndex = 30;
+            this.btn_edit_usuario.TabIndex = 12;
             this.btn_edit_usuario.Text = "Editar";
             this.btn_edit_usuario.UseVisualStyleBackColor = true;
             this.btn_edit_usuario.Click += new System.EventHandler(this.edit_usuario_Click);
@@ -348,7 +352,7 @@
             this.btn_cad_usuario.Location = new System.Drawing.Point(303, 13);
             this.btn_cad_usuario.Name = "btn_cad_usuario";
             this.btn_cad_usuario.Size = new System.Drawing.Size(127, 34);
-            this.btn_cad_usuario.TabIndex = 29;
+            this.btn_cad_usuario.TabIndex = 13;
             this.btn_cad_usuario.Text = "Cadastrar";
             this.btn_cad_usuario.UseVisualStyleBackColor = true;
             this.btn_cad_usuario.Click += new System.EventHandler(this.cad_usuario_Click);
@@ -360,7 +364,7 @@
             this.login_user.Location = new System.Drawing.Point(144, 57);
             this.login_user.Name = "login_user";
             this.login_user.Size = new System.Drawing.Size(218, 28);
-            this.login_user.TabIndex = 27;
+            this.login_user.TabIndex = 1;
             // 
             // ConsultarUsuario_Form
             // 

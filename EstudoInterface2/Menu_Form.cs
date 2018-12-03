@@ -30,6 +30,13 @@ namespace MIPHelpDesk
             Boolean bloqueio = conexao.returnBloqueio;
 
             lbNome.Text = nome + " " + sobrenome;
+
+            if (acesso == "2") {
+                controle_usuarios.Visible = false;
+            }else if(acesso == "3"){
+                controle_usuarios.Visible = false;
+                lista_de_chamados.Visible = false;
+            }
         }
 
         private void sair_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
